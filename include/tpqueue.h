@@ -31,29 +31,29 @@ template<typename T, int size>
 void TPQueue<T, size>::push(const T& item) {
   if (isFull()) 
     throw std::string("Full!");
-    count++;
-    int index = last, j = first, i = last;
-    while (j < last) {
-      if (arr[j].prior < item.prior) {
-        index = j;
-        break;
-      }
-      j++;
+  count++;
+  int index = last, j = first, i = last;
+  while (j < last) {
+    if (arr[j].prior < item.prior) {
+      index = j;
+      break;
     }
-    while (i > index) {
-      arr[i % size] = arr[(i - 1) % size];
-      i--;
-    }
-    arr[index % size] = item;
-    end++;
+    j++;
+  }
+  while (i > index) {
+    arr[i % size] = arr[(i - 1) % size];
+    i--;
+  }
+  arr[index % size] = item;
+  end++;
 }
 
 template<typename T, int size>
 T& TPQueue<T, size>::pop() {
   if (isEmpty()) 
     throw std::string("Empty!");
-    count--;
-    return arr[first++ % size];
+  count--;
+  return arr[first++ % size];
 }
 
 template<typename T, int size>
